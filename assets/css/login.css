@@ -10,6 +10,7 @@ body {
 }
 
 .loginAndRegBox {
+  border-radius: 20px;
   width: 400px;
   height: 310px;
   background-color: #fff;
@@ -20,6 +21,7 @@ body {
 }
 
 .title-box {
+  border-radius: 20px;
   height: 60px;
   background: url("/assets/images/login_title.png") no-repeat center;
 }
@@ -47,5 +49,6 @@ body {
 .layui-input {
   display: block;
   width: 100%;
-  padding-left: 30px;
+  padding-left: 30px !important;
 }
+
