@@ -15,8 +15,15 @@ $(function () {
     //  密码校验
     var form = layui.form
     form.verify({
+        // 密码校验1
         pwd: [/^[\S]{6,12}$/, '密码必须6到12位，且不能出现空格'],
-
+        //确认密码校验
+        repwd: function (value) {
+            var pwd = $(".register-box [name=password]").val()
+            if (pwd !== value) {
+                return "两次密码不一致"
+            }
+        }
     })
-     
+
 })
