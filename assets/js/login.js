@@ -25,5 +25,36 @@ $(function () {
             }
         }
     })
+    // 开始表单提交事件
+    // 注册时的请求
+
+
+
+
+    $("#registerpage").on("submit", function (e) {
+
+        // var username = $("#registerpage #uname").val()
+        // var password = $("#registerpage #passwords").val()
+        var username = $("#registerpage [name=username]").val()
+        var password = $("#registerpage [name=password]").val()
+        //    阻止默认提交；
+        e.preventDefault()
+
+        // console.log(username,password);
+        // 根据文档发起请求
+        $.post(
+            'http://ajax.frontend.itheima.net/api/reguser',
+            {
+                username: username,
+                password: password,
+            },
+            function (res) {
+                if (res.status !== 0) {
+                    return "注册失败"
+                }
+            }
+        )
+    })
+    
 
 })
