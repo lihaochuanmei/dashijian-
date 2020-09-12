@@ -30,7 +30,7 @@ body {
   padding: 0 30px;
 }
 
-.registerbox {
+.register-box {
   display: none;
 }
 
@@ -51,4 +51,3 @@ body {
   width: 100%;
   padding-left: 30px !important;
 }
-
