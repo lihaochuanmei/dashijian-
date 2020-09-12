@@ -71,6 +71,8 @@ $(function () {
                     return "登录失败"
                 }
                 location.href = '/index.html'
+                console.log(res.token)
+                localStorage.setItem('token', res.token)
             }
         )
     })
