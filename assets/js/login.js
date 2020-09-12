@@ -27,19 +27,13 @@ $(function () {
     })
     // 开始表单提交事件
     // 注册时的请求
-
-
-
-
     $("#registerpage").on("submit", function (e) {
-
         // var username = $("#registerpage #uname").val()
         // var password = $("#registerpage #passwords").val()
         var username = $("#registerpage [name=username]").val()
         var password = $("#registerpage [name=password]").val()
         //    阻止默认提交；
         e.preventDefault()
-
         // console.log(username,password);
         // 根据文档发起请求
         $.post(
@@ -54,7 +48,49 @@ $(function () {
                 }
             }
         )
+    });
+
+    // 开始表单登录事件
+    $("#loginpage").on("submit", function (e) {
+        // var username = $("#registerpage #uname").val()
+        // var password = $("#registerpage #passwords").val()
+        var username = $("#loginpage [name=username]").val()
+        var password = $("#loginpage [name=password]").val()
+        //    阻止默认提交；
+        e.preventDefault()
+        // console.log(username,password);
+        // 根据文档发起请求
+        $.post(
+            'http://ajax.frontend.itheima.net/api/login',
+            {
+                username: username,
+                password: password,
+            },
+            function (res) {
+                if (res.status !== 0) {
+                    return "登录失败"
+                }
+                location.href = '/index.html'
+            }
+        )
     })
-    
+    // $("#loginpage").on("submit", function (e) {
+    //     console.log(username, password)
+    //     e.preventDefault()
+    //     $.post(
+    //         'http://ajax.frontend.itheima.net/api/login',
+    //         {
+    //             username: $("#loginpage[name = username]").val(),
+    //             password: $("#loginpage[name = password]").val(),
+    //         },
+    //         function (res) {
+    //             if (res.status !== 0) {
+    //                 return "登录失败"
+    //             }
+
+
+    //         }
+    //     )
+    // })
 
 })
