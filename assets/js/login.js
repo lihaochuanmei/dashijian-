@@ -28,6 +28,7 @@ $(function () {
     // 开始表单提交事件
     // 注册时的请求
     $("#registerpage").on("submit", function (e) {
+        var formdata = $(this).serialize()
         // var username = $("#registerpage #uname").val()
         // var password = $("#registerpage #passwords").val()
         var username = $("#registerpage [name=username]").val()
@@ -37,21 +38,26 @@ $(function () {
         // console.log(username,password);
         // 根据文档发起请求
         $.post(
-            'http://ajax.frontend.itheima.net/api/reguser',
-            {
-                username: username,
-                password: password,
-            },
+            '/api/reguser', {
+            username: username,
+            password: password,
+        },
+
             function (res) {
                 if (res.status !== 0) {
-                    return "注册失败"
+                    return layer.msg(res.message)
                 }
+                layer.msg("恭喜您，注册成功")
+                $("#link-login").click()
             }
         )
     });
 
+
+
     // 开始表单登录事件
     $("#loginpage").on("submit", function (e) {
+        console.log($(this).serialize())
         // var username = $("#registerpage #uname").val()
         // var password = $("#registerpage #passwords").val()
         var username = $("#loginpage [name=username]").val()
@@ -61,38 +67,22 @@ $(function () {
         // console.log(username,password);
         // 根据文档发起请求
         $.post(
-            'http://ajax.frontend.itheima.net/api/login',
-            {
-                username: username,
-                password: password,
-            },
+            '/api/login', {
+            username: username,
+            password: password,
+        },
             function (res) {
                 if (res.status !== 0) {
-                    return "登录失败"
+                    return layer.msg('登录失败！')
                 }
+                layer.msg("恭喜您，登录成功")
+                localStorage.setItem("token", res.token)
                 location.href = '/index.html'
                 console.log(res.token)
                 localStorage.setItem('token', res.token)
             }
         )
     })
-    // $("#loginpage").on("submit", function (e) {
-    //     console.log(username, password)
-    //     e.preventDefault()
-    //     $.post(
-    //         'http://ajax.frontend.itheima.net/api/login',
-    //         {
-    //             username: $("#loginpage[name = username]").val(),
-    //             password: $("#loginpage[name = password]").val(),
-    //         },
-    //         function (res) {
-    //             if (res.status !== 0) {
-    //                 return "登录失败"
-    //             }
 
-
-    //         }
-    //     )
-    // })
 
 })
